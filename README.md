@@ -61,13 +61,12 @@ Normal traffic is grouped into $k$ clusters. Anomalies are flagged based on thei
 Honest notes on where the system shines and where it struggles:
 
 ### Offline Analysis (Forensics)
-The system performs very well on the **CIC-IDS2017 dataset**. When analyzing complete flows from PCAP files, it successfully detects Port Scans and DDoS patterns with a low False Positive Rate.
+The system performs very well on the **CIC-IDS2017 dataset**. When analyzing complete flows from PCAP files (tried Friday), it successfully detects Port Scans and DDoS patterns with a low False Positive Rate.
 
 ### Live Monitoring Challenges
 Running this on a live interface is trickier. Achieving < 5% FPR is hard due to:
 1.  **Partial Flows:** We have to evaluate flows *before* they close to give real-time alerts. This means the feature vectors are sometimes incomplete compared to the training data.
 2.  **Burstiness:** Legitimate spikes (e.g., opening a browser with 20 tabs) can look statistically similar to a flood attack.
-3.  **K-Means Limitations:** K-Means assumes spherical clusters. Complex real-world traffic is often density-based, so a move to **DBSCAN** or **Isolation Forest** is planned for future updates to handle noise better.
 
 ---
 
