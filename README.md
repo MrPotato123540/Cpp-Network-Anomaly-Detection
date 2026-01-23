@@ -26,7 +26,7 @@ It supports both **offline PCAP analysis** (forensics) and **live network monito
 ## Key Features
 
 * **Flow Aggregation:** Processes raw packets into 5-tuple flows.
-* **Dual Mode:** * *Training Mode:* Learns baseline statistics from "normal" traffic PCAPs.
+* **Dual Mode:** * *Training Mode:* Learns baseline statistics from "normal" traffic PCAPs. (current project has a model trained with Monday data)
     * *Detection Mode:* Scores live traffic or files against the trained model.
 * **Visualization:** Real-time plots and logs using Dear ImGui.
 
