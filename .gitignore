@@ -1,0 +1,19 @@
+# --- C++ Derleme Çıktıları (Bunları İstemiyoruz) ---
+*.o
+*.obj
+*.out
+*.app
+build/
+bin/
+
+main
+detector
+*.exe
+
+*.pcap
+*.pcapng
+*.csv
+
+
+.DS_Store
+.vscode/
