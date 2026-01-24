@@ -7,7 +7,7 @@
 
 A lightweight Network Intrusion Detection System written in C++17. This tool analyzes network flows to flag anomalies like DDoS attacks, Port Scans, and Brute Force attempts using unsupervised learning (K-Means) and statistical analysis (Z-Score).
 
-It supports both **offline PCAP analysis** (forensics) and **live network monitoring** with a real-time ImGui dashboard.
+It supports both **offline PCAP analysis** and **live network monitoring** with a real-time ImGui dashboard.
 
 > **Target:** Achieving a False Positive Rate (FPR) of **< 5%** on the CIC-IDS2017 dataset.
 
@@ -60,7 +60,7 @@ Normal traffic is grouped into $k$ clusters. Anomalies are flagged based on thei
 
 Honest notes on where the system shines and where it struggles:
 
-### Offline Analysis (Forensics)
+### Offline Analysis 
 The system performs very well on the **CIC-IDS2017 dataset**. When analyzing complete flows from PCAP files (tried Friday), it successfully detects Port Scans and DDoS patterns with a low False Positive Rate.
 
 ### Live Monitoring Challenges
