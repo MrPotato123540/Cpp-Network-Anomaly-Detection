@@ -1,5 +1,7 @@
 # Network Anomaly Detection
 
+![Dashboard running against a local capture: anomaly score trend over time, and a flow table where whitelisted sources show up green instead of being silently dropped](screenshots/dashboard.png)
+
 A flow-based intrusion detection system in C++17. It reads packets from a PCAP file or off a live
 interface, groups them into flows, and scores each finished flow against a statistical model of what
 normal traffic looked like. Anything that scores too far from normal shows up in an ImGui dashboard,
