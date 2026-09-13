@@ -17,3 +17,16 @@ detector
 
 .DS_Store
 .vscode/
+build/
+
+# Runtime output
+detected_anomalies.log
+trusted_ips.txt
+
+# Binary
+netanomaly
+
+# CMake, in case someone configures in-tree
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json

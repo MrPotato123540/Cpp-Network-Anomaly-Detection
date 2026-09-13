@@ -243,7 +243,7 @@ int main(int argc, char* argv[]) {
             // PlotLines: (Label, Data, Count, Offset, OverlayText, ScaleMin, ScaleMax, GraphSize)
             // ScaleMax is set to 20.0f, adjust this if your Z-Score/KMeans outputs larger numbers.
             ImGui::PlotLines("##ScoreGraph", scores.data(), (int)scores.size(), 0, 
-                             "Anomaly Score", 0.0f, 20.0f, ImVec2(ImGui::GetContentRegionAvail().x, 100));
+                             "Anomaly Score", 0.0f, 5.0f, ImVec2(ImGui::GetContentRegionAvail().x, 100));
         } else {
             ImGui::TextColored(ImVec4(0.5, 0.5, 0.5, 1), "Waiting for traffic data...");
         }

@@ -1,41 +1,52 @@
-cmake_minimum_required(VERSION 3.10)
-project(internship_project)
+cmake_minimum_required(VERSION 3.14)
+project(netanomaly)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra")
-
 set(OpenGL_GL_PREFERENCE GLVND)
 
 find_package(PcapPlusPlus REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 
-include_directories(include)
-include_directories(imgui)
-include_directories(imgui/backends)
+# Dear ImGui is fetched at configure time instead of being vendored,
+# so a plain `git clone` of this repo is enough to build.
+include(FetchContent)
+FetchContent_Declare(imgui
+    GIT_REPOSITORY https://github.com/ocornut/imgui.git
+    GIT_TAG        v1.90.4
+    GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(imgui)
+
+set(IMGUI_SOURCES
+    ${imgui_SOURCE_DIR}/imgui.cpp
+    ${imgui_SOURCE_DIR}/imgui_draw.cpp
+    ${imgui_SOURCE_DIR}/imgui_tables.cpp
+    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+)
 
 file(GLOB SOURCES "src/*.cpp")
 
-set(IMGUI_SOURCES
-    imgui/imgui.cpp
-    imgui/imgui_draw.cpp
-    imgui/imgui_tables.cpp
-    imgui/imgui_widgets.cpp
-    imgui/backends/imgui_impl_glfw.cpp    
-    imgui/backends/imgui_impl_opengl3.cpp 
+add_executable(netanomaly ${SOURCES} ${IMGUI_SOURCES})
+
+target_include_directories(netanomaly
+    PRIVATE
+        include
+        ${imgui_SOURCE_DIR}
+        ${imgui_SOURCE_DIR}/backends
 )
 
-add_executable(internship_project ${SOURCES} ${IMGUI_SOURCES})
-
-target_link_libraries(internship_project
-	PUBLIC
-	PcapPlusPlus::Pcap++
-	PcapPlusPlus::Packet++
-	PcapPlusPlus::Common++
-	pcap
-	pthread
-	glfw
-	OpenGL::GL
+target_link_libraries(netanomaly
+    PUBLIC
+        PcapPlusPlus::Pcap++
+        PcapPlusPlus::Packet++
+        PcapPlusPlus::Common++
+        pcap
+        pthread
+        glfw
+        OpenGL::GL
 )
